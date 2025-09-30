@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: my-android-backend
+    
+    # 'build' 설정을 이렇게 객체 형태로 수정합니다.
+    build:
+      # Dockerfile이 있는 폴더 경로를 지정합니다.
+      # './Backend-Ktor'는 "현재 폴더 아래의 Backend-Ktor 폴더"를 의미합니다.
+      context: ./Backend-Ktor
+      
+    image: backend-ktor:latest
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    
+  # 나중에 다른 서비스(예: Classification-model)도 여기에 추가할 수 있습니다.
+  # model:
+  #   build:
+  #     context: ./Classification-model
